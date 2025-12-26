@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00ff00;
+  --primary-dark: #00cc00;
+  --secondary: #ff00ff;
+  --accent: #00ffff;
+  --yellow: #ffff00;
+  --red: #ff0000;
+  --dark: #0a0a0a;
+  --dark-elevated: #1a1a1a;
+  --text: #00ff00;
+  --text-secondary: #00cc00;
+  --text-muted: #008800;
+  --scanline: rgba(0, 255, 0, 0.1);
+  --glow: rgba(0, 255, 0, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Courier New', 'Monaco', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.4;
+  font-size: 16px;
+  image-rendering: pixelated;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+}
+
+section {
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* CRT Scanline Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scanline) 2px,
+    var(--scanline) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  animation: scanline 8s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+  border: 1px solid var(--text-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border: 1px solid var(--dark);
+  box-shadow: 0 0 10px var(--glow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+  box-shadow: 0 0 15px var(--secondary);
+}
